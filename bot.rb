@@ -14,7 +14,7 @@ class SoupBot
   end
 
   def self.on_ready(ev)
-    self.bot.update_status(:online, "to contented purring", nil, nil, false, 2)
+    self.bot.update_status(:online, "contented purring", nil, nil, false, 2)
   end
 
   def self.run
