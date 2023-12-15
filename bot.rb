@@ -25,6 +25,21 @@ class SoupBot
     self.bot.ready(&method(:on_ready))
     self.bot.run
   end
+
+  def self.get_random_image
+    @@base ||= ENV.fetch("IMAGE_BASE", "https://archive.catstret.ch/soup/")
+    @@images ||= (Pathname.new(__dir__) / "soup_pictures.txt").open('r') do |fh|
+      fh.readlines.map do |l|
+        l.strip!
+        next nil if l.nil? || l&.empty?
+        l
+      end.compact
+    end
+
+    url = @@images.sample
+    url = @@base + url unless url.start_with? /(https?:)?\/\//
+    url
+  end
 end
 
 if __FILE__ == $0
