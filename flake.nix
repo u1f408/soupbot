@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -13,12 +13,16 @@
           overlays = [ ];
         };
 
-        ruby = pkgs.ruby_3_1;
-	bundler = pkgs.bundler.override (_: { inherit ruby; });
+        ruby = pkgs.ruby_3_3;
+        bundler = pkgs.bundler.override (_: { inherit ruby; });
       in rec {
         devShells.default = pkgs.mkShell {
           buildInputs = [ ruby bundler ];
-          packages = with pkgs; [ ];
+          packages = with pkgs; [
+            imagemagick
+            exiftool
+            jpegoptim
+          ];
         };
       });
 }

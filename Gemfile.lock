@@ -1,27 +1,38 @@
-GIT
-  remote: https://github.com/u1f408/discordrb.git
-  revision: 51d1b29c1d960902c431f577eb89fcb43240e139
+GEM
+  remote: https://rubygems.org/
   specs:
-    discordrb (3.4.3.pre.norelease)
+    base64 (0.2.0)
+    discordrb (3.5.0)
+      discordrb-webhooks (~> 3.5.0)
       ffi (>= 1.9.24)
       opus-ruby
       rest-client (>= 2.0.0)
       websocket-client-simple (>= 0.3.0)
-
-GEM
-  remote: https://rubygems.org/
-  specs:
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
-    dotenv (2.8.1)
+    discordrb-webhooks (3.5.0)
+      rest-client (>= 2.0.0)
+    domain_name (0.6.20240107)
+    dotenv (3.1.7)
     event_emitter (0.2.6)
-    ffi (1.15.5)
+    ffi (1.17.1)
+    ffi (1.17.1-aarch64-linux-gnu)
+    ffi (1.17.1-aarch64-linux-musl)
+    ffi (1.17.1-arm-linux-gnu)
+    ffi (1.17.1-arm-linux-musl)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86-linux-gnu)
+    ffi (1.17.1-x86-linux-musl)
+    ffi (1.17.1-x86_64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
+    ffi (1.17.1-x86_64-linux-musl)
     http-accept (1.7.0)
-    http-cookie (1.0.5)
+    http-cookie (1.0.8)
       domain_name (~> 0.5)
-    mime-types (3.4.1)
+    logger (1.6.6)
+    mime-types (3.6.0)
+      logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2023.0218.1)
+    mime-types-data (3.2025.0220)
+    mutex_m (0.3.0)
     netrc (0.11.0)
     opus-ruby (1.0.1)
       ffi
@@ -30,20 +41,29 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.8.2)
-    websocket (1.2.9)
-    websocket-client-simple (0.6.1)
+    websocket (1.2.11)
+    websocket-client-simple (0.9.0)
+      base64
       event_emitter
+      mutex_m
       websocket
 
 PLATFORMS
-  x86_64-linux
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
+  ruby
+  x86-linux-gnu
+  x86-linux-musl
+  x86_64-darwin
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
-  discordrb!
+  discordrb
   dotenv
 
 BUNDLED WITH
-   2.3.26
+   2.5.22
