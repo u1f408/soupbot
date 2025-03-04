@@ -1,8 +1,19 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
+export LANG=C
+export LC_ALL=C
+
 if [ $# -lt 2 ]; then
     echo >&2 "usage: $0 <input folder> <output folder>"
     exit 1
 fi
+
+declare -a _reqd_commands=( magick exiftool jpegoptim )
+for cmd in "${_reqd_commands[@]}"; do
+    if ! type -fP "$cmd" >/dev/null; then
+        echo >&2 "error: missing tool: $cmd"
+        exit 2
+    fi
+done
 
 _in="${1%%/}"; shift
 _out="${1%%/}"; shift
@@ -17,8 +28,8 @@ for inf in $(find "${_in}" -maxdepth 1 -type f); do
     tmpf="${_out}/tconv_${inf##*/}"
     cp "${inf}" "${tmpf}"
 
-    if (( $(identify -format '%[fx:(h>600 || w>600)]' "${tmpf}") )); then
-        mogrify -resize '600x600>' "${tmpf}"
+    if (( $(magick identify -format '%[fx:(h>600 || w>600)]' "${tmpf}") )); then
+        magick mogrify -resize '600x600>' "${tmpf}"
     fi
 
     if [ "${ext}" = jpg ]; then
