@@ -5,7 +5,7 @@ require 'discordrb'
 
 class SoupBot
   def self.bot
-    @@bot ||= Discordrb::Bot.new(token: ENV.fetch('DISCORD_TOKEN', nil), intents: [])
+    @@bot ||= Discordrb::Bot.new(token: ENV.fetch('DISCORD_TOKEN', nil), intents: :none)
     @@bot
   end
 
@@ -14,7 +14,8 @@ class SoupBot
   end
 
   def self.on_ready(ev)
-    self.bot.update_status(:online, "contented purring", nil, nil, false, 2)
+    self.get_random_image
+    self.bot.update_status('online', "contented purring (#{@@images.count} images)", nil, activity_type: 2)
   end
 
   def self.run
